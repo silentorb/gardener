@@ -1,0 +1,21 @@
+.content {
+    width: 80%;
+    margin: 20pt auto 0;
+}
+
+input {
+    display:block;
+    margin-bottom: 10pt;
+}
+
+input:last-child {
+    margin-bottom: 0pt;
+}
+
+tr {
+
+}
+
+td {
+    padding: 5pt 10pt;
+}
