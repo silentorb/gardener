@@ -6,7 +6,7 @@ var Gardener = angular.module('Gardener', [
 Gardener.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-		when('/', {
+		when('/login', {
 			templateUrl: 'partials/login.html',
 			controller: 'Login_Controller'
 		})
