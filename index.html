@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app>
 <head>
-  <title></title>
-  <script src="lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
-  <script src="compiled/when/when.js" type="text/javascript"></script>
-  <script src="lib/bloom/js/metahub.js" type="text/javascript"></script>
-  <script src="lib/bloom/js/bloom.js" type="text/javascript"></script>
-  <script src="lib/bloom/js/vineyard.js" type="text/javascript"></script>
-  <script src="app/js/gardener.js" type="text/javascript"></script>
+  <title>Gardener</title>
 
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="app/js/app.js"></script>
+  <script src="app/js/controllers.js"></script>
+
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="app/styles/gardener.css"/>
 
 </head>
 <body>
-<div class="content js-content"></div>
+<div ng-view></div>
 </body>
 </html>

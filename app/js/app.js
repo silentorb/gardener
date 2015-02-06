@@ -1,5 +1,17 @@
-Bloom.import_all()
+var Gardener = angular.module('Gardener', [
+	'ngRoute',
+	'Gardener_Controllers'
+])
 
+Gardener.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.
+		when('/', {
+			templateUrl: 'partials/login.html',
+			controller: 'Login_Controller'
+		})
+}])
+/*
 var Gardener = {
 	config: null,
 	current_site: null,
@@ -45,6 +57,4 @@ var Login = Bloom.Flower.subclass('Login', {
 				})
 		})
 	}
-})
-
-$(Gardener.load)
+})*/
