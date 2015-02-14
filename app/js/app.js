@@ -1,16 +1,67 @@
 var Gardener = angular.module('Gardener', [
-	'ngRoute',
-	'Gardener_Controllers'
+	'ui.router'
 ])
 
-Gardener.config(['$routeProvider',
-	function($routeProvider) {
-		$routeProvider.
-		when('/login', {
-			templateUrl: 'partials/login.html',
-			controller: 'Login_Controller'
-		})
-}])
+Gardener.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('main', {
+      url: '/',
+      templateUrl: 'partials/main.html',
+      controller: 'Main_Control',
+      authenticate: true
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'partials/login.html',
+      controller: 'Login_Control',
+      authenticate: false
+    })
+
+  $urlRouterProvider.otherwise('/login')
+})
+
+Gardener.factory('Fortress', function() {
+  return {
+    is_authenticated: function() {
+      return false
+    }
+  }
+})
+
+Gardener.run(function($rootScope, $state, Fortress) {
+  $rootScope.$on('$stateChangeStart', function(event, to_state, to_params, from_state, from_params) {
+    if (to_state.authenticate && !Fortress.is_authenticated()) {
+      $state.transitionTo('login')
+      event.preventDefault()
+    }
+  })
+})
+
+Gardener.controller('Main_Control', function() {
+
+})
+
+Gardener.controller('Login_Control', function($scope, $http, $state) {
+  $scope.submit = function() {
+    $http.post('/gardener/vineyard/login', {
+      name: $scope.user.name,
+      pass: $scope.user.pass
+    })
+      .then(function(response) {
+        $state.transitionTo('main')
+      })
+
+  }
+})
+//Gardener.config(['$routeProvider',
+//	function($routeProvider) {
+//		$routeProvider.
+//		when('/login', {
+//			templateUrl: 'partials/login.html',
+//			controller: 'Login_Controller'
+//		})
+//}])
+
 /*
 var Gardener = {
 	config: null,
